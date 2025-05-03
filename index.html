@@ -38,9 +38,6 @@
       justify-content: center;
       padding: 20px;
     }
-    .presentes a{
-      margin-top: 30px;
-    }
 
     .item {
       background-color: #ffe4eb;
@@ -70,20 +67,20 @@
       cursor: pointer;
       text-decoration: none;
     }
-    .btn.finalizar {
-  position: sticky;
-  top: 0;
-  background: #e63964;
-  color: white;
-  padding: 25px 20px;
-  margin-bottom: 15px;
-  z-index: 10;
-  border: none;
-  width: 100%;
-  text-align: center;
-  font-size: 1rem;
-}
 
+    .btn.finalizar {
+      position: sticky;
+      top: 0;
+      background: #e63964;
+      color: white;
+      padding: 25px 20px;
+      margin-bottom: 15px;
+      z-index: 10;
+      border: none;
+      width: 100%;
+      text-align: center;
+      font-size: 1rem;
+    }
 
     .btn:hover {
       background-color: #ff4f72;
@@ -114,7 +111,6 @@
 </head>
 <body>
 
-
   <h1>Lista de Casa Nova</h1>
   <h2>Vitória ❤️ Cleito</h2>
 
@@ -123,14 +119,17 @@
     Abaixo estão alguns itens que gostaríamos de ter em nosso novo lar.</p>
   </div>
 
-<div class="presentes" id="lista-presentes">
-  <!-- Os presentes serão carregados aqui -->
-</div>
+  <div class="presentes" id="lista-presentes">
+    <!-- Os presentes serão carregados aqui -->
+  </div>
 
 <script>
   const presentesURL = 'presentes.txt';
   const entreguesURL = 'presentes_entregues.txt';
   const phoneNumber = '5585991900162';
+
+  // Cole aqui a URL que o Apps Script gerar para você:
+  const urlScript = 'https://script.google.com/macros/s/AKfycbz0xMTY8R5YlPHJvD1Kgr8gwktYhZO75-VtnRzu7-VlNKBGbfigNXKQam-y0PMEZSYJ/exec';
 
   async function carregarPresentes() {
     const listaContainer = document.getElementById('lista-presentes');
@@ -175,15 +174,11 @@
         listaContainer.appendChild(div);
       });
 
-     // Botão para enviar os selecionados
-const finalizarBtn = document.createElement('button');
-finalizarBtn.textContent = 'Finalizar Seleção';
-finalizarBtn.className = 'btn finalizar';
-finalizarBtn.onclick = enviarSelecionados;
-
-// ⬅️ Adiciona no início da lista
-listaContainer.prepend(finalizarBtn);
-
+      const finalizarBtn = document.createElement('button');
+      finalizarBtn.textContent = 'Finalizar Seleção';
+      finalizarBtn.className = 'btn finalizar';
+      finalizarBtn.onclick = enviarSelecionados;
+      listaContainer.prepend(finalizarBtn);
 
     } catch (error) {
       console.error('Erro ao carregar presentes:', error);
@@ -202,8 +197,25 @@ listaContainer.prepend(finalizarBtn);
     const mensagem = `Olá Vitória e Cleito! Gostaria de presentear vocês com:\n\n🎁 ${presentes.join('\n- ')}`;
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
+
+    // Envia para o Google Sheets
+    fetch(urlScript, {
+      method: 'POST',
+      body: JSON.stringify({ presentes }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log('Presente registrado:', data);
+    })
+    .catch(err => {
+      console.error('Erro ao registrar presente:', err);
+    });
   }
 
   carregarPresentes();
 </script>
 </body>
+</html>
