@@ -135,9 +135,6 @@
   const entreguesURL = 'presentes_entregues.txt';
   const phoneNumber = '5585991900162';
 
-  // Cole aqui a URL que o Apps Script gerar para você:
-  const urlScript = 'https://script.google.com/macros/s/AKfycbx4o85DtxIEkNNRk3uh0GtDWIR0PSyC2u-Qr4RoTeA4GlOL35adSKsoBWZlo5rbMtkV/exec';
-
   async function carregarPresentes() {
     const listaContainer = document.getElementById('lista-presentes');
 
@@ -204,22 +201,6 @@
     const mensagem = `Olá Vitória e Cleito! Gostaria de presentear vocês com:\n\n🎁 ${presentes.join('\n🎁 ')}`;
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
-
-    // Envia para o Google Sheets
-    fetch(urlScript, {
-  method: 'POST',
-  body: JSON.stringify({ presentes }),
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
-.then(res => res.json())
-.then(data => {
-  console.log('Presente registrado:', data);
-})
-.catch(err => {
-  console.error('Erro ao registrar presente:', err.message || err);
-});
 
   }
     
