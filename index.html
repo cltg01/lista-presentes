@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="alternate icon" href="icone-coração.png" type="image/png">>
+  <link rel="alternate icon" href="icone-coração.png" type="image/png">
   <title>Lista de Casa Nova - Vitória & Cleito</title>
   <style>
     body {
@@ -202,6 +202,21 @@
     const mensagem = `Olá Vitória e Cleito! Gostaria de presentear vocês com:\n\n🎁 ${presentes.join('\n🎁 ')}`;
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
+
+      // Abre WhatsApp
+  window.open(url, '_blank');
+
+// Envia para a planilha via Apps Script
+fetch('https://script.google.com/macros/s/AKfycbyzv3_qn0fG0V4Wed_ew7cjuAOwg09Xo680tB2uyu3v3C0yr9IJd968tGv3XM9zSozkzw/exec', {
+  method: 'POST',
+  body: JSON.stringify({ presentes: presentes }),
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+.then(response => response.text())
+.then(data => console.log('Resposta da planilha:', data))
+.catch(error => console.error('Erro ao enviar para planilha:', error));
 
   }
     
