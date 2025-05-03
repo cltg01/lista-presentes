@@ -1,4 +1,5 @@
     Pix | Caso deseje contribuir com um valor na qual podemos usar para pagarmos algum item do evento
+    Outros | Caso deseje nos presentear com outro presente que não está na lista
     TV Smart | Para entretenimento com acesso a apps de filmes, séries e vídeos.
     Geladeira | Conserva alimentos e bebidas com eficiência e espaço.
     Guarda-roupa  | Armazena roupas e acessórios com organização.
