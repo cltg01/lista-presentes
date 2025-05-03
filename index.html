@@ -207,16 +207,11 @@
   window.open(url, '_blank');
 
 // Envia para a planilha via Apps Script
-fetch('https://script.google.com/macros/s/AKfycbyzv3_qn0fG0V4Wed_ew7cjuAOwg09Xo680tB2uyu3v3C0yr9IJd968tGv3XM9zSozkzw/exec', {
-  method: 'POST',
-  body: JSON.stringify({ presentes: presentes }),
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
-.then(response => response.text())
-.then(data => console.log('Resposta da planilha:', data))
-.catch(error => console.error('Erro ao enviar para planilha:', error));
+const presentesParam = encodeURIComponent(presentes.join(','));
+fetch(`https://script.google.com/macros/s/AKfycbyzv3_qn0fG0V4Wed_ew7cjuAOwg09Xo680tB2uyu3v3C0yr9IJd968tGv3XM9zSozkzw/exec?presentes=${presentesParam}`)
+  .then(res => res.text())
+  .then(data => console.log('Resposta da planilha:', data))
+  .catch(err => console.error('Erro ao enviar para planilha:', err));
 
   }
     
