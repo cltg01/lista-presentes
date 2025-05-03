@@ -208,7 +208,7 @@
 
 // Envia para a planilha via Apps Script
 const presentesParam = encodeURIComponent(presentes.join(','));
-fetch(`https://script.google.com/macros/s/AKfycbyzv3_qn0fG0V4Wed_ew7cjuAOwg09Xo680tB2uyu3v3C0yr9IJd968tGv3XM9zSozkzw/exec?presentes=${presentesParam}`)
+fetch(`https://script.google.com/macros/s/AKfycbzweuso5z8wGDbnT2-8LK5cnIhcVwQ7VllPBEZ52TX6OUBySG9Xfzdzjjw0mrJT7TY6Dw/exec?presentes=${presentesParam}`)
   .then(res => res.text())
   .then(data => console.log('Resposta da planilha:', data))
   .catch(err => console.error('Erro ao enviar para planilha:', err));
