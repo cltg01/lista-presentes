@@ -200,19 +200,20 @@
 
     // Envia para o Google Sheets
     fetch(urlScript, {
-      method: 'POST',
-      body: JSON.stringify({presentes}),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log('Presente registrado:', data);
-    })
-    .catch(err => {
-      console.error('Erro ao registrar presente:', err);
-    });
+  method: 'POST',
+  body: JSON.stringify({ presentes }),
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+.then(res => res.json())
+.then(data => {
+  console.log('Presente registrado:', data);
+})
+.catch(err => {
+  console.error('Erro ao registrar presente:', err.message || err);
+});
+
   }
     
   carregarPresentes();
