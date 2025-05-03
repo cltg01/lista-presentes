@@ -194,7 +194,7 @@
     }
 
     const presentes = Array.from(checkboxes).map(cb => cb.value);
-    const mensagem = `Olá Vitória e Cleito! Gostaria de presentear vocês com:\n\n🎁 ${presentes.join('\n- ')}`;
+    const mensagem = `Olá Vitória e Cleito! Gostaria de presentear vocês com:\n\n🎁 ${presentes.join('\n🎁 ')}`;
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
 
