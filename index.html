@@ -133,22 +133,19 @@
 
 <script>
   const presentesURL = 'presentes.txt';
-  const entreguesURL = 'https://script.google.com/macros/s/AKfycbzweuso5z8wGDbnT2-8LK5cnIhcVwQ7VllPBEZ52TX6OUBySG9Xfzdzjjw0mrJT7TY6Dw/exec';
   const phoneNumber = '5585991900162';
 
   async function carregarPresentes() {
     const listaContainer = document.getElementById('lista-presentes');
 
     try {
-      const [resPresentes, resEntregues] = await Promise.all([
-        fetch(presentesURL),
-        fetch(entreguesURL)
-      ]);
+      const resPresentes = await fetch(presentesURL);
+    const resEntregues = await fetch('https://script.google.com/macros/s/AKfycbzweuso5z8wGDbnT2-8LK5cnIhcVwQ7VllPBEZ52TX6OUBySG9Xfzdzjjw0mrJT7TY6Dw/exec');
 
-      const todosPresentes = (await resPresentes.text())
-        .split('\n')
-        .map(l => l.trim())
-        .filter(l => l);
+    const todosPresentes = (await resPresentes.text())
+      .split('\n')
+      .map(l => l.trim())
+      .filter(l => l);
 
       const presentesEntregues = (await resEntregues.text())
         .split('\n')
