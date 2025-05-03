@@ -131,72 +131,74 @@
     <!-- Os presentes serão carregados aqui -->
   </div>
 
-  <script>
-    const phoneNumber = '5585991900162';
-  
-    async function carregarPresentes() {
-      const listaContainer = document.getElementById('lista-presentes');
-  
-      try {
-        // Requisição para pegar os presentes da planilha "Lista"
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzweuso5z8wGDbnT2-8LK5cnIhcVwQ7VllPBEZ52TX6OUBySG9Xfzdzjjw0mrJT7TY6Dw/exec');
-        const presentesData = await response.json();
-  
-        presentesData.forEach((presente, i) => {
-          const { nomePresente, descricao } = presente;
-          if (!nomePresente) return;
-  
-          const div = document.createElement('div');
-          div.classList.add('item');
-  
-          const checkbox = document.createElement('input');
-          checkbox.type = 'checkbox';
-          checkbox.value = nomePresente;
-          checkbox.id = 'presente_' + i;
-  
-          const label = document.createElement('label');
-          label.setAttribute('for', 'presente_' + i);
-          label.innerHTML = `<h3>${nomePresente}</h3><p>${descricao || ''}</p>`;
-  
-          div.appendChild(checkbox);
-          div.appendChild(label);
-          listaContainer.appendChild(div);
-        });
-  
-        const finalizarBtn = document.createElement('button');
-        finalizarBtn.textContent = 'Finalizar Seleção';
-        finalizarBtn.className = 'btn finalizar';
-        finalizarBtn.onclick = enviarSelecionados;
-        listaContainer.prepend(finalizarBtn);
-  
-      } catch (error) {
-        console.error('Erro ao carregar presentes:', error);
-        listaContainer.innerHTML = '<p>Erro ao carregar a lista de presentes.</p>';
-      }
-    }
-  
-    function enviarSelecionados() {
-      const checkboxes = document.querySelectorAll('#lista-presentes input[type="checkbox"]:checked');
-      if (checkboxes.length === 0) {
-        alert('Selecione pelo menos um presente.');
-        return;
-      }
-  
-      const presentes = Array.from(checkboxes).map(cb => cb.value);
-      const mensagem = `Olá Vitória e Cleito! Gostaria de presentear vocês com:\n\n🎁 ${presentes.join('\n🎁 ')}`;
-      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensagem)}`;
-      window.open(url, '_blank');
-  
-      // Envia para a planilha via Apps Script
-      const presentesParam = encodeURIComponent(presentes.join(','));
-      fetch(`https://script.google.com/macros/s/AKfycbzweuso5z8wGDbnT2-8LK5cnIhcVwQ7VllPBEZ52TX6OUBySG9Xfzdzjjw0mrJT7TY6Dw/exec?presentes=${presentesParam}`)
-        .then(res => res.text())
-        .then(data => console.log('Resposta da planilha:', data))
-        .catch(err => console.error('Erro ao enviar para planilha:', err));
-    }
-  
-    carregarPresentes();
-  </script>
-  
+<script>
+  const presentesURL = 'presentes.txt';
+  const entreguesURL = 'presentes_entregues.txt';
+  const phoneNumber = '5585991900162';
+
+  async function carregarPresentes() {
+  const listaContainer = document.getElementById('lista-presentes');
+
+  try {
+    // Requisição para pegar os presentes da planilha "Lista"
+    const response = await fetch('https://script.google.com/macros/s/AKfycbzweuso5z8wGDbnT2-8LK5cnIhcVwQ7VllPBEZ52TX6OUBySG9Xfzdzjjw0mrJT7TY6Dw/exec');
+    const presentesData = await response.json();
+
+    presentesData.forEach((presente, i) => {
+      const { nomePresente, descricao } = presente;
+      if (!nomePresente) return;
+
+      const div = document.createElement('div');
+      div.classList.add('item');
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.value = nomePresente;
+      checkbox.id = 'presente_' + i;
+
+      const label = document.createElement('label');
+      label.setAttribute('for', 'presente_' + i);
+      label.innerHTML = `<h3>${nomePresente}</h3><p>${descricao || ''}</p>`;
+
+      div.appendChild(checkbox);
+      div.appendChild(label);
+      listaContainer.appendChild(div);
+    });
+
+    const finalizarBtn = document.createElement('button');
+    finalizarBtn.textContent = 'Finalizar Seleção';
+    finalizarBtn.className = 'btn finalizar';
+    finalizarBtn.onclick = enviarSelecionados;
+    listaContainer.prepend(finalizarBtn);
+
+  } catch (error) {
+    console.error('Erro ao carregar presentes:', error);
+    listaContainer.innerHTML = '<p>Erro ao carregar a lista de presentes.</p>';
+  }
+}
+
+async function enviarSelecionados() {
+  const checkboxes = document.querySelectorAll('#lista-presentes input[type="checkbox"]:checked');
+  if (checkboxes.length === 0) {
+    alert('Selecione pelo menos um presente.');
+    return;
+  }
+
+  const presentes = Array.from(checkboxes).map(cb => cb.value);
+  const mensagem = `Olá Vitória e Cleito! Gostaria de presentear vocês com:\n\n🎁 ${presentes.join('\n🎁 ')}`;
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensagem)}`;
+  window.open(url, '_blank');
+
+  // Envia para a planilha via Apps Script, agora registrando os presentes na aba 'dados'
+  const presentesParam = encodeURIComponent(presentes.join(','));
+  fetch(`https://script.google.com/macros/s/AKfycbzweuso5z8wGDbnT2-8LK5cnIhcVwQ7VllPBEZ52TX6OUBySG9Xfzdzjjw0mrJT7TY6Dw/exec?presentes=${presentesParam}`)
+    .then(res => res.text())
+    .then(data => console.log('Resposta da planilha:', data))
+    .catch(err => console.error('Erro ao enviar para planilha:', err));
+}
+
+carregarPresentes();
+
+</script>
 </body>
 </html>
