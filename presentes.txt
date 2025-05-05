@@ -49,6 +49,7 @@
     Tapete de Sala | Decora e aquece o ambiente da sala.
     Cortina Blackout | Controla a luminosidade e garante privacidade.
     Cafeteira | Prepara café de forma rápida e prática.
+    Garrafa de café | Armaezna e mantem o café quentinho
     Cuscuzeira | Ideal para fazer cuscuz tradicional com facilidade.
     Air fryer | Frita alimentos sem óleo de forma saudável.
     Tábua de passar roupa | Apoia roupas para passar com segurança.
