@@ -15,7 +15,6 @@
     Jogo de Panela | Essencial para preparar diversas receitas.
     Pratos de vidro | Servem bem refeições e trazem elegância à mesa.
     Assadeira de vidro | Ideal para assar pratos doces e salgados.
-    Conjunto para frios | Serve e organiza frios com estilo.
     Conjunto de talheres | Completa as refeições com praticidade.
     Jogo de canecas | Perfeito para café, chá ou outras bebidas quentes.
     Jogo de xícaras com pires|Elegância e praticidade para servir café.
@@ -57,13 +56,13 @@
     Espelho | Auxilia na maquiagem e cuidados pessoais.
     Cesto de roupas flexível | Armazena roupas sujas ou limpas.
     Ferro de passar roupa | Remove amassados com eficiência.
-    Varal de chão | Seca roupas de maneira prática e portátil.
     Rodo plástico | Remove água de pisos de forma rápida.
     Baldes | Auxiliam na limpeza e transporte de água.
-    Kit pregador | Fixam roupas no varal com firmeza.
+    Kit pregador e Varal de chão | Fixam roupas no varal com firmeza.
     Rodo de pia | Auxilia na limpeza da pia e bancadas.
     Batedeira | Mistura massas leves com praticidade.
     Liquidificador | Prepara sucos, vitaminas e massas leves.
+    Gelágua | Aparelho prático para armazenar e fornecer água natural e gelada, ideal para ambientes residenciais e comerciais.
     Micro-ondas | Eletrodoméstico prático para aquecer e preparar alimentos de forma rápida.
     Mixer 3 Em 1 | Aparelho versátil que funciona como mixer, processador e batedor, facilitando o preparo de alimentos.
     Conjunto de Frigideiras | Utensílios essenciais para cozinhar, ideal para preparar diversos tipos de receitas.
